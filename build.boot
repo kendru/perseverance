@@ -7,14 +7,23 @@
  :test-paths #{"test/"}
  :target "target/")
 
+ (configure-repositories!
+  (fn [{:keys [url] :as repo-map}]
+    (->> (condp re-find url
+           #"^https://clojars\.org/repo"
+           {:username (get-sys-env "CLOJARS_USER" :required)
+            :password (get-sys-env "CLOJARS_PASS" :required)}
+           #".*" nil)
+         (merge repo-map))))
+
 (task-options!
  pom  {:project     'kendru/perseverance
        :version     "0.1.2"
        :description "Fork of Grammarly's flexible retries library for Clojure."
        :license     {"Apache License, Version 2.0"
                      "http://www.apache.org/licenses/LICENSE-2.0"}
-       :url         "https://github.com/grammarly/perseverance"
-       :scm         {:url "https://github.com/grammarly/perseverance"}})
+       :url         "https://github.com/kendru/perseverance"
+       :scm         {:url "https://github.com/kendru/perseverance"}})
 
 (ns-unmap 'boot.user 'test)
 (deftask test
