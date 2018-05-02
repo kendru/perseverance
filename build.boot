@@ -8,9 +8,9 @@
  :target "target/")
 
 (task-options!
- pom  {:project     'com.grammarly/perseverance
+ pom  {:project     'kendru/perseverance
        :version     "0.1.2"
-       :description "Flexible retries library for Clojure."
+       :description "Fork of Grammarly's flexible retries library for Clojure."
        :license     {"Apache License, Version 2.0"
                      "http://www.apache.org/licenses/LICENSE-2.0"}
        :url         "https://github.com/grammarly/perseverance"
